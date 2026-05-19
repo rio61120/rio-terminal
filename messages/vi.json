@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "title": "RIO Terminal — Terminal trực tuyến | Đồng bộ terminal local",
+    "description": "RIO Terminal là terminal trực tuyến đồng bộ với shell máy bạn. Chạy zsh, npm và git trên trình duyệt với phiên PTY thật."
+  },
+  "common": {
+    "appName": "RIO Terminal",
+    "loading": "Đang tải…",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "home": "Trang chủ"
+  },
+  "home": {
+    "badge": "Terminal online · Đồng bộ terminal local",
+    "title": "RIO Terminal —",
+    "titleHighlight": "shell của bạn, đồng bộ.",
+    "subtitle": "Terminal trực tuyến đẹp, đồng bộ zsh local. PTY đầy đủ — chạy npm, git và workflow hàng ngày trên trình duyệt.",
+    "cta": "Mở Terminal",
+    "features": {
+      "shell": {
+        "title": "Đồng bộ terminal local",
+        "description": "Phiên PTY thật kết nối máy bạn — không phải shell giả."
+      },
+      "fast": {
+        "title": "Terminal online",
+        "description": "Mở từ mọi trình duyệt. Không cài đặt, truy cập workspace ngay."
+      },
+      "simple": {
+        "title": "RIO Terminal",
+        "description": "Giao diện hiện đại, theme và animation — dành cho developer sống trong terminal."
+      }
+    }
+  },
+  "terminal": {
+    "title": "Terminal",
+    "backHome": "Về trang chủ",
+    "settings": "Cài đặt giao diện",
+    "loader": {
+      "title": "Đang khởi động RIO Terminal",
+      "bundle": "Đang tải engine terminal…",
+      "terminal": "Đang khởi tạo màn hình…",
+      "shell": "Đang đồng bộ terminal local…",
+      "ready": "Sẵn sàng"
+    },
+    "appearance": {
+      "title": "Giao diện terminal",
+      "subtitle": "Chủ đề, font, con trỏ và hiệu ứng",
+      "back": "Về terminal",
+      "reset": "Đặt lại",
+      "theme": "Chủ đề màu",
+      "typography": "Kiểu chữ",
+      "fontSize": "Cỡ chữ",
+      "fontFamily": "Font",
+      "lineHeight": "Chiều cao dòng",
+      "cursor": "Con trỏ",
+      "cursorBlink": "Nhấp nháy con trỏ",
+      "effects": "Hiệu ứng",
+      "glow": "Ánh sáng viền",
+      "scanlines": "Vạch CRT",
+      "apply": "Về terminal"
+    }
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn tìm không tồn tại.",
+    "backHome": "Về trang chủ"
+  }
+}

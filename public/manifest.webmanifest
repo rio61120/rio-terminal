@@ -1,0 +1,21 @@
+{
+  "name": "RIO Terminal",
+  "short_name": "RIO",
+  "description": "Terminal online — sync local terminal",
+  "start_url": "/en/terminal",
+  "display": "standalone",
+  "background_color": "#0f0f14",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

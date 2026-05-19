@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "title": "RIO Terminal — Terminal Online | Sync Local Terminal",
+    "description": "RIO Terminal is a terminal online that syncs with your local shell. Run zsh, npm, and git in the browser with a real PTY session."
+  },
+  "common": {
+    "appName": "RIO Terminal",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "home": "Home"
+  },
+  "home": {
+    "badge": "Terminal online · Sync local terminal",
+    "title": "RIO Terminal —",
+    "titleHighlight": "your shell, synced.",
+    "subtitle": "A beautiful terminal online that syncs with your local zsh. Full PTY — run npm, git, and your daily workflow in the browser.",
+    "cta": "Open Terminal",
+    "features": {
+      "shell": {
+        "title": "Sync local terminal",
+        "description": "Real PTY session wired to your machine — not a mock shell."
+      },
+      "fast": {
+        "title": "Terminal online",
+        "description": "Open from any browser. No install, instant access to your workspace."
+      },
+      "simple": {
+        "title": "RIO Terminal",
+        "description": "Modern UI, themes, and animations — built for developers who live in the terminal."
+      }
+    }
+  },
+  "terminal": {
+    "title": "Terminal",
+    "backHome": "Back to home",
+    "settings": "Appearance settings",
+    "loader": {
+      "title": "Starting RIO Terminal",
+      "bundle": "Loading terminal engine…",
+      "terminal": "Initializing display…",
+      "shell": "Syncing local terminal…",
+      "ready": "Ready"
+    },
+    "appearance": {
+      "title": "Terminal appearance",
+      "subtitle": "Themes, typography, cursor, and visual effects",
+      "back": "Back to terminal",
+      "reset": "Reset",
+      "theme": "Color theme",
+      "typography": "Typography",
+      "fontSize": "Font size",
+      "fontFamily": "Font family",
+      "lineHeight": "Line height",
+      "cursor": "Cursor",
+      "cursorBlink": "Blinking cursor",
+      "effects": "Effects",
+      "glow": "Ambient glow",
+      "scanlines": "CRT scanlines",
+      "apply": "Back to terminal"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist.",
+    "backHome": "Back to home"
+  }
+}
