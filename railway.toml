@@ -1,0 +1,13 @@
+# Railway: deploy terminal backend only (not the Next.js Vercel frontend).
+# In the Railway service settings, you can also set Root Directory to repo root.
+#
+# Required env vars:
+#   TERMINAL_CORS_ORIGIN=https://your-app.vercel.app
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.terminal"
+
+[deploy]
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

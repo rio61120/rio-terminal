@@ -32,13 +32,22 @@ Set `NEXT_PUBLIC_APP_URL` in production so OG URLs resolve correctly.
 ### Recommended setup (Vercel + backend)
 
 1. **Frontend** — Deploy this repo to Vercel as usual (`next build`).
-2. **Terminal backend** — Deploy the socket server on [Railway](https://railway.app), [Fly.io](https://fly.io), Render, or Docker:
+2. **Terminal backend** — Deploy on [Railway](https://railway.app) using **`Dockerfile.terminal`** (included). Do **not** use the main `Dockerfile` or `npm run build` on Railway — that builds Next.js and fails on Alpine/`@parcel/watcher`.
+
+   Railway reads `railway.toml` and builds with:
 
    ```bash
-   npm run terminal:server
+   docker build -f Dockerfile.terminal .
    ```
 
-   Default port `3001`, path `/api/terminal/io`.
+   Or locally: `npm run terminal:server` (port `3001`, path `/api/terminal/io`).
+
+   **Railway checklist**
+
+   - Service uses `Dockerfile.terminal` (via `railway.toml`)
+   - Do **not** set a custom build command to `npm run build`
+   - Env: `TERMINAL_CORS_ORIGIN=https://your-app.vercel.app`
+   - Copy the public Railway URL → Vercel `NEXT_PUBLIC_TERMINAL_SOCKET_URL`
 
 3. **Vercel env** (Settings → Environment Variables):
 

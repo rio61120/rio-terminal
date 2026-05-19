@@ -6,6 +6,7 @@
     "dev": "node server.mjs",
     "dev:next": "next dev --turbopack",
     "terminal:server": "node scripts/terminal-socket-server.mjs",
+    "docker:terminal": "docker build -f Dockerfile.terminal -t rio-terminal-be .",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
