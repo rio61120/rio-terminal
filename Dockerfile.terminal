@@ -9,6 +9,10 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json ./
+COPY scripts/prepare-husky.cjs ./scripts/prepare-husky.cjs
+# Skip git hooks in production/CI (husky is dev-only).
+ENV HUSKY=0
+ENV CI=true
 # Keep optional deps (@lydell/node-pty platform binaries). Do not use --no-optional.
 RUN npm ci --omit=dev
 

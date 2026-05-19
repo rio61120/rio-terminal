@@ -1,6 +1,10 @@
 # Fallback if Railway uses Nixpacks instead of Dockerfile.terminal.
 # Skips `next build` — terminal backend does not need Next.js.
 
+[variables]
+HUSKY = "0"
+CI = "true"
+
 [phases.setup]
 nixPkgs = ["nodejs_22", "python3"]
 
