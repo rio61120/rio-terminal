@@ -5,6 +5,11 @@ import { Terminal } from '@xterm/xterm';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { io, type Socket } from 'socket.io-client';
 import { ConnectionStatus } from '@/features/terminal/components/connection-status';
+import {
+  getTerminalConnectionHint,
+  getTerminalSocketPath,
+  getTerminalSocketUrl,
+} from '@/lib/terminal-socket';
 import { writeLocalEcho } from '@/features/terminal/lib/terminal-local-echo';
 import { safeFit } from '@/features/terminal/lib/safe-fit';
 import { FONT_OPTIONS, getXtermTheme } from '@/features/terminal/lib/terminal-themes';
@@ -53,10 +58,12 @@ export function XtermTerminal({ className, onPhaseChange, onReady }: XtermTermin
 
   const applyAppearance = useCallback(
     (term: Terminal) => {
-      term.options.theme = getXtermTheme(appearance.preset);
+      term.options.theme = getXtermTheme(appearance);
       term.options.fontSize = appearance.fontSize;
       term.options.fontFamily = getFontStack(appearance.fontFamily);
       term.options.lineHeight = appearance.lineHeight;
+      term.options.letterSpacing = appearance.letterSpacing;
+      term.options.scrollback = appearance.scrollback;
       term.options.cursorStyle = appearance.cursorStyle;
       term.options.cursorBlink = appearance.cursorBlink;
     },
@@ -97,11 +104,12 @@ export function XtermTerminal({ className, onPhaseChange, onReady }: XtermTermin
       cursorBlink: appearance.cursorBlink,
       fontSize: appearance.fontSize,
       lineHeight: appearance.lineHeight,
+      letterSpacing: appearance.letterSpacing,
       fontFamily: getFontStack(appearance.fontFamily),
-      theme: getXtermTheme(appearance.preset),
+      theme: getXtermTheme(appearance),
       disableStdin: false,
       cursorStyle: appearance.cursorStyle,
-      scrollback: 5000,
+      scrollback: appearance.scrollback,
       convertEol: true,
     });
 
@@ -119,8 +127,8 @@ export function XtermTerminal({ className, onPhaseChange, onReady }: XtermTermin
 
     notifyPhase('shell');
 
-    const socket: Socket = io({
-      path: '/api/terminal/io',
+    const socket: Socket = io(getTerminalSocketUrl(), {
+      path: getTerminalSocketPath(),
       transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 20,
@@ -149,8 +157,18 @@ export function XtermTerminal({ className, onPhaseChange, onReady }: XtermTermin
 
     socket.on('connect_error', () => {
       setStatus('error');
-      term.writeln('\r\n\x1b[33m⚠ Terminal server not connected.\x1b[0m');
-      term.writeln('Run: \x1b[36mbun run dev\x1b[0m or \x1b[36mnpm run dev\x1b[0m\r\n');
+      for (const line of getTerminalConnectionHint().lines) {
+        if (line === '') {
+          term.writeln('');
+        } else if (line.startsWith('⚠')) {
+          term.writeln(`\r\n\x1b[33m${line}\x1b[0m`);
+        } else if (line.startsWith('  ')) {
+          term.writeln(`\x1b[36m${line}\x1b[0m`);
+        } else {
+          term.writeln(`\x1b[37m${line}\x1b[0m`);
+        }
+      }
+      term.writeln('\r\n');
       markReady();
     });
 
@@ -257,7 +275,14 @@ export function XtermTerminal({ className, onPhaseChange, onReady }: XtermTermin
           label={status === 'connected' ? sessionLabel || 'live' : undefined}
         />
       </div>
-      <div ref={containerRef} className="terminal-host h-full min-h-0 w-full flex-1 px-2 pb-2" />
+      <div
+        ref={containerRef}
+        className="terminal-host h-full min-h-0 w-full flex-1"
+        style={{
+          padding: appearance.padding,
+          paddingTop: Math.max(4, appearance.padding * 0.5),
+        }}
+      />
     </div>
   );
 }

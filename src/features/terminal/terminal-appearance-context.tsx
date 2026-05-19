@@ -31,7 +31,15 @@ function loadAppearance(): TerminalAppearance {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_TERMINAL_APPEARANCE;
-    return { ...DEFAULT_TERMINAL_APPEARANCE, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw) as Partial<TerminalAppearance>;
+    return {
+      ...DEFAULT_TERMINAL_APPEARANCE,
+      ...parsed,
+      customColors: {
+        ...DEFAULT_TERMINAL_APPEARANCE.customColors,
+        ...parsed.customColors,
+      },
+    };
   } catch {
     return DEFAULT_TERMINAL_APPEARANCE;
   }
@@ -45,7 +53,13 @@ export function TerminalAppearanceProvider({ children }: { children: ReactNode }
   }, [appearance]);
 
   const setAppearance = useCallback((patch: Partial<TerminalAppearance>) => {
-    setAppearanceState((prev) => ({ ...prev, ...patch }));
+    setAppearanceState((prev) => ({
+      ...prev,
+      ...patch,
+      ...(patch.customColors
+        ? { customColors: { ...prev.customColors, ...patch.customColors } }
+        : {}),
+    }));
   }, []);
 
   const resetAppearance = useCallback(() => {

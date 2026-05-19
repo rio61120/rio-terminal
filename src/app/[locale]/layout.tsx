@@ -46,8 +46,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   const jsonLd = createSoftwareApplicationJsonLd();
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable}`}>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={`dark ${inter.variable} ${jetbrains.variable}`}
+    >
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/icon" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-icon" sizes="180x180" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <script
           type="application/ld+json"

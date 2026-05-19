@@ -112,6 +112,7 @@
 .terminal-host .xterm-viewport {
   overflow-y: auto !important;
   width: 100% !important;
+  background-color: transparent !important;
 }
 .terminal-host .xterm-screen {
   width: 100% !important;
@@ -133,6 +134,13 @@
     rgba(0, 0, 0, 0.12) 2px,
     rgba(0, 0, 0, 0.12) 4px
   );
-  opacity: 0.35;
   mix-blend-mode: overlay;
+}
+
+.terminal-vignette {
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
 }
